@@ -6,7 +6,7 @@ Raw, uninterpreted salary datasets of 32,000+ records are impossible to query or
 
 
 ***The Solution:***  
-I structured the raw data and connected it to a dedicated calculation layer using Excel formulas and Boolean logic. Then, I built an interactive dashboard with dynamic filters that simplifies the data visuals, making it easy for decision-makers to get instant insights without dealing with the complex rows.
+I designed a 4-layer architecture `Data → Validation → Calculations → Dashboard` to separate concerns and keep the model organized. By isolating the raw rows from the visual layer, I connected everything using dynamic Excel formulas and Boolean logic. This built an interactive dashboard with dynamic filters that simplifies the data visuals, making it easy for decision-makers to get instant insights without dealing with complex background rows.
 
 
 ***Tools & Tech Stack:***
@@ -83,3 +83,12 @@ I structured the raw data and connected it to a dedicated calculation layer usin
 ### 6. Temporal Trends (Monthly Salaries 2023)
 ![Monthly Salaries Area Chart](<Resources/Monthly salaries 2023.png>)
   *This area chart tracks salary and hiring trends month-by-month throughout the year. I used an Area Chart to visually highlight the peaks and valleys, making it easy for companies to identify hiring seasons and peak market activity at a glance.*
+  ----
+ 
+
+##  What's Next
+
+To further scale and improve this project, the next phases will focus on:
+*   **Performance Optimization:** Migrating the background calculation layer to Power Query and Power Pivot to reduce workbook size and eliminate formula recalculation lags.
+*   **Advanced Market Insights:** Expanding the data model to include a skills demand analysis, tracking the most requested tools and certifications for each data role.
+*   **Global Compensation Normalization:** Incorporating cost-of-living indices and purchasing power data across the 57 countries to provide deeper, more accurate cross-border salary comparisons.

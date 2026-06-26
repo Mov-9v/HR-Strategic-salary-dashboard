@@ -2,19 +2,17 @@
 
 
 ***The Problem:***  
-Raw, uninterpreted salary datasets of 32,000+ records are impossible to query or extract direct strategic insights from manually. Attempting to filter and analyze this volume across multiple criteria in Excel typically causes severe computation bottlenecks and rendering delays. 
-
+32,000+ salary records sitting in a flat table tell you nothing on their own. Filtering across job title, country, schedule type, and month manually in Excel isn't just slow — at this scale, it breaks.
 
 ***The Solution:***  
-I designed a 4-layer architecture `Data → Validation → Calculations → Dashboard` to separate concerns and keep the model organized. By isolating the raw rows from the visual layer, I connected everything using dynamic Excel formulas and Boolean logic. This built an interactive dashboard with dynamic filters that simplifies the data visuals, making it easy for decision-makers to get instant insights without dealing with complex background rows.
-
+I split the workbook into 4 sheets: ` Data → Validation → Calculations → Dashboard `The idea was simple: keep the raw data completely separate from anything visual, and let formulas do all the work in between. Every number on the dashboard is pulled live — no hardcoded values, no manual refreshes.
 
 ***Tools & Tech Stack:***
-*   **Microsoft Excel 365:** The platform used to build the data model and visuals.
+*   **Microsoft Excel 365:** The only tool used — no Power Query, no Power Pivot, no VBA.
 *   **Dynamic Array Formulas:** Used functions like `FILTER`, `ROWS`, `MEDIAN`, and `IFERROR` for calculations.
-*   **Boolean Logic:** Multiplied conditions directly within formulas to filter the 32k rows.
+*   **Boolean Logic:**Conditions multiplied directly inside formulas to filter all 32k rows on the fly.
 
-*Note: This project focuses strictly on Excel's core formulas and functions as part of my current learning path. Advanced internal tools like Power Query or Power Pivot will be applied in future projects.*
+This project is part of my Excel learning path. I kept it intentionally limited to core formulas — Power Query and Power Pivot are next.
 
 
 ##  Dashboard in Action
@@ -65,17 +63,17 @@ I designed a 4-layer architecture `Data → Validation → Calculations → Dash
 
 
 
-### 3. Geospatial Analysis (Top Countries by Salary)
+### 3. Top 20 Countries Map 
 ![Top Countries Map](<Resources/Top countries by salary.png>)
   *This map displays the top 20 countries based on median salary. I intentionally limited the visualization to the top 20 to optimize the map's rendering speed, ensuring a fast and smooth user experience when switching filters.*
 
 
-### 4. Market Demand (Job Volume by Title)
+### 4. Job Volume Treemap
 ![Job Volume Treemap](<Resources/Job volume by title.png>)
   *This treemap shows the distribution of job counts across different roles. I chose a Treemap here because it cleanly displays a high number of job titles in a single, compact space, allowing decision-makers to spot the most in-demand roles instantly.*
 
 
-### 5. Compensation Benchmarking (Median Salary)
+### 5. Median Salary Bar Chart
 ![Median Salary Bar Chart](<Resources/Median salary for job title chart.png>)
   *This horizontal bar chart compares median salaries across different roles. I implemented a dynamic conditional formatting rule so that whichever job title is currently selected in the top filter automatically highlights in a darker, distinct color, making benchmarking instant and visually striking.*
 
@@ -88,7 +86,6 @@ I designed a 4-layer architecture `Data → Validation → Calculations → Dash
 
 ##  What's Next
 
-To further scale and improve this project, the next phases will focus on:
-*   **Performance Optimization:** Migrating the background calculation layer to Power Query and Power Pivot to reduce workbook size and eliminate formula recalculation lags.
-*   **Advanced Market Insights:** Expanding the data model to include a skills demand analysis, tracking the most requested tools and certifications for each data role.
-*   **Global Compensation Normalization:** Incorporating cost-of-living indices and purchasing power data across the 57 countries to provide deeper, more accurate cross-border salary comparisons.
+* Migrate to Power Query + Power Pivot — the formula layer works, but recalculation on 32k rows has a cost. Moving the heavy lifting out of sheet formulas should fix that.
+* Skills demand layer — the dataset includes a job_skills column I haven't touched yet. Analyzing which tools and certifications appear most per role is the obvious next step.
+* Cost-of-living adjustment — median salary in the US and median salary in Pakistan are different numbers entirely once you account for purchasing power. Adding a normalization layer would make the country comparison actually meaningful.
